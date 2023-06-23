@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./src/vistas/img/Icono.jpg">
+    <link rel="stylesheet" href="./src/vistas/Css/Main.css">
+    <title>Documentacion</title>
+    
+    <script>
+        function mostrarElemento() {
+            var elemento = document.getElementById("elementos").value;
+            var elementos = document.getElementsByClassName("elemento");
+
+            for (var i = 0; i < elementos.length; i++) {
+                elementos[i].style.display = "none";
+            }
+
+            if (elemento !== "") {
+                var elementoSeleccionado = document.getElementById(elemento);
+                elementoSeleccionado.style.display = "block";
+            }
+        }
+
+        function mostrarImagen(imagen) {
+            var imagenes = document.getElementsByClassName("imagen");
+
+            for (var i = 0; i < imagenes.length; i++) {
+                imagenes[i].style.display = "none";
+            }
+
+            if (imagen !== "") {
+                var imagenSeleccionada = document.getElementById(imagen);
+                imagenSeleccionada.style.display = "block";
+            }
+        }
+        
+        function abrirPDF(pdf) {
+            var iframe = document.getElementById("pdf-frame");
+            iframe.src = pdf;
+        }
+    </script>
+</head>
+<body>
+    <h1>Visualización de archivos</h1>
+
+    <label for="elementos">Seleccionar elemento:</label>
+    <select id="elementos" onchange="mostrarElemento()">
+        <option value="">Seleccione</option>
+        <option value="imagenes">Maquetacion</option>
+        <option value="pdfs">Documentacion</option>
+    </select>
+
+    <div id="imagenes" class="elemento">
+        <h2>Maquetacion</h2>
+        <button class="boton" onclick="mostrarImagen('imagen-login')">Abrir Login.png</button>
+        <button class="boton" onclick="mostrarImagen('imagen-menu')">Abrir Menu.png</button>
+        <button class="boton" onclick="mostrarImagen('imagen-cardeologia')">Abrir Vista_Cardeologia.png</button>
+        <img id="imagen-login" class="imagen" src="./src/vistas/img/Login.png" alt="Login">
+        <img id="imagen-menu" class="imagen" src="./src/vistas/img/Menu.png" alt="Menu">
+        <img id="imagen-cardeologia" class="imagen" src="./src/vistas/img/Vista_Cardeologia.png" alt="Vista_Cardeologia">
+    </div>
+
+    <div id="pdfs" class="elemento">
+        <h2>Documentacion</h2>
+        <button class="boton" onclick="abrirPDF('./src/vistas/pdf/Login.pdf')">Abrir Login.pdf</button>
+        <button class="boton" onclick="abrirPDF('./src/vistas/pdf/Menu.pdf')">Abrir Menu.pdf</button>
+        <button class="boton" onclick="abrirPDF('./src/vistas/pdf/Vista_Cardeologia.pdf')">Abrir Vista_Cardeologia.pdf</button>
+        <iframe id="pdf-frame" width="100%" height="600px"></iframe>
+    </div>
+</body>
+</html>
+
